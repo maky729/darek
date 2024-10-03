@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Reveal</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .image-container {
+            position: relative;
+            width: 500px;
+            /* Adjust to the size of your image */
+            height: 500px;
+            margin: 20px;
+        }
+
+        #reveal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(255, 255, 255);
+            transition: height 1s ease-out;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        p {
+font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+font-size: x-large;
+font-style: unset;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img src="https://m.media-amazon.com/images/I/713QZRoo1CL._AC_UF1000,1000_QL80_.jpg" alt="Image"
+            id="reveal-image">
+        <div class="overlay" id="image-overlay1">
+            <p id="text1">dárek k narozeninám pro mámu: NAČÍTÁNÍ</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="trimův život.PNG" alt="Image"
+            id="reveal-image">
+        <div class="overlay" id="image-overlay2">
+            <p id="text2">dárek k narozeninám pro tátu: NAČÍTÁNÍ</p>
+        </div>
+    </div>
+
+    <script>        
+        const today = new Date(); // Current date
+
+        // Start the reveal process
+        function revealByOctober17thLinear(overlayName, targetDate, text) {
+            const overlay = document.getElementById(overlayName);
+
+            const startDate = new Date(today.getFullYear(), 9, 3); // October 3rd
+
+            // Total number of days between October 3rd and October 17th
+            const totalDays = (targetDate - startDate) / (1000 * 60 * 60 * 24);
+
+            // Number of days that have passed since October 3rd
+            const daysPassed = (today - startDate) / (1000 * 60 * 60 * 24);
+
+            // Ensure that if it's past October 17th, the image is fully revealed
+            if (daysPassed >= totalDays) {
+                overlay.style.height = '0%'; // Fully reveal the image
+                alert("Všechno nejlepší!")
+                document.getElementById(text).style.opacity = 0;
+                
+                return;
+            }
+
+            // Calculate the percentage of the image revealed based on days passed
+            const revealPercentage = (daysPassed / totalDays) * 100;
+
+            // Update the overlay height to reveal the image
+            overlay.style.height = `${100 - revealPercentage}%`;
+
+            // Set it to update periodically (e.g., every 30 minutes)
+            setTimeout(revealByOctober17thLinear, 1000 * 60 * 30); // Update every 30 minutes
+        }
+
+        const targetDate1 = new Date(today.getFullYear(), 9, 12); // October 17th
+        const targetDate2 = new Date(today.getFullYear(), 9, 12); // October 17th
+
+        // Call the function to start revealing the image
+        revealByOctober17thLinear('image-overlay1', targetDate1, "text1");
+        revealByOctober17thLinear('image-overlay2', targetDate2, "text2");
+
+
+    </script>
+</body>
+
+</html>
