@@ -13,6 +13,8 @@
             height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
+            flex-direction: column; /* Stack items vertically for smaller screens */
+
         }
 
         .image-container {
@@ -47,7 +49,18 @@ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 font-size: x-large;
 font-style: unset;
         }
+/* Make the design responsive on smaller screens */
+@media (max-width: 600px) {
+            .image-container {
+                width: 100%; /* Make it full width on mobile */
+                height: auto; /* Let the height adjust automatically */
+                max-width: 300px; /* Limit maximum size for smaller screens */
+            }
 
+            p {
+                font-size: large; /* Adjust text size for smaller screens */
+            }
+        }
     </style>
 </head>
 <body>
