@@ -13,15 +13,13 @@
             height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
-            flex-direction: column; /* Stack items vertically for smaller screens */
-
         }
 
         .image-container {
             position: relative;
-            width: 400px;
+            width: 30vh;
             /* Adjust to the size of your image */
-            height: 400px;
+            height: 30vh;
             margin: 30px;
         }
 
@@ -51,14 +49,8 @@ font-style: unset;
         }
 /* Make the design responsive on smaller screens */
 @media (max-width: 600px) {
-            .image-container {
-                width: 100%; /* Make it full width on mobile */
-                height: auto; /* Let the height adjust automatically */
-                max-width: 300px; /* Limit maximum size for smaller screens */
-            }
-
-            p {
-                font-size: large; /* Adjust text size for smaller screens */
+            .image-container {            
+                flex-direction: column; /* Stack items vertically for smaller screens */
             }
         }
     </style>
